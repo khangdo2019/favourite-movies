@@ -22,6 +22,8 @@ const startAddMovieButton = document.querySelector('header button');
 const userInputs = addMovieModal.querySelectorAll('input');
 // const userInputs = addMovieModal.getElementsByTagName('input');
 
+const movies = [];
+
 const toggleMovieModal = () => { // function() {}
     addMovieModal.classList.toggle('visible');
     toggleBackdrop();
@@ -35,8 +37,15 @@ const backdropClickHandler = () => {
     toggleMovieModal();
 };
 
+const clearMovieInput = () => {
+    for (const usrInput of userInputs) {
+        usrInput.value = '';
+    }
+};
+
 const cancelAddMovieHandler = () => {
     toggleMovieModal();
+    clearMovieInput();
 };
 
 // Fetching & Validating user inputs
@@ -54,6 +63,16 @@ const addMovieHandler = () => {
         alert('Please enter valid values (rating between 1 and 5)!');
     }
 
+    const newMovie = {
+        title: titleValue,
+        image: imageUrlValue,
+        rating: ratingValue
+    };
+
+    movies.push(newMovie);
+    console.log(movies);
+    toggleMovieModal();
+    clearMovieInput();
 };
 
 startAddMovieButton.addEventListener('click', toggleMovieModal);
