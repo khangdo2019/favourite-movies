@@ -92,17 +92,15 @@ const closeMovieModal = () => {
 };
 
 const showMovieModal = () => { // function() {}
+    // Changing from toggleMovieModal
+
     addMovieModal.classList.add('visible');
+    // Changing from toggle to add
     toggleBackdrop();
 };
 
 const toggleBackdrop = () => {
     addBackdrop.classList.toggle('visible');
-};
-
-const backdropClickHandler = () => {
-    closeMovieModal();
-    closeMovieDeletionModal();
 };
 
 const clearMovieInput = () => {
@@ -112,7 +110,7 @@ const clearMovieInput = () => {
 };
 
 const cancelAddMovieHandler = () => {
-    closeMovieModal();
+    closeMovieModal(); // change from toggleMovieModal
     clearMovieInput();
 };
 
@@ -141,14 +139,19 @@ const addMovieHandler = () => {
 
     movies.push(newMovie);
     console.log(movies);
-    closeMovieModal();
+    closeMovieModal(); // change from toggleMovieModal
     toggleBackdrop();
     clearMovieInput();
     renderNewMovieElement(newMovie.id, newMovie.title, newMovie.image, newMovie.rating);
     updateUI();
 };
 
-startAddMovieButton.addEventListener('click', showMovieModal);
+const backdropClickHandler = () => {
+    closeMovieModal(); // change from toggleMovieModal
+    closeMovieDeletionModal();
+};
+
+startAddMovieButton.addEventListener('click', showMovieModal); // change from toggleMovieModal
 addBackdrop.addEventListener('click', backdropClickHandler);
 cancelAddMovieButton.addEventListener('click', cancelAddMovieHandler);
 // cancelButton[0].addEventListener('click', toggleMovieModal);
